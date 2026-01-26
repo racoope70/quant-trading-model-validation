@@ -1,6 +1,11 @@
 # Market ML Signals (Production)
 
-Production-ready market ML signals: curated model zoo (A2C, Deep SARSA, DQN, DDPG, KMeans, LightGBM, PPO, SAC, TD3, XGBoost) with a consistent feature pipeline, normalization artifacts, and one-line `predict()` adapters for backtest/live platforms (including **QuantConnect via JSON feed** and **Alpaca paper/live**).
+Production-ready market ML signals platform with a PPO-based walk-forward reference implementation, designed to support additional reinforcement learning and supervised models through a uniform feature, training, and signal-serving pipeline. Signals are exported via JSON and consumed by downstream execution platforms, including QuantConnect (LEAN) and Alpaca (paper/live).
+
+---
+
+## Status
+PPO is the primary fully implemented and validated model. Additional models are under active development in a separate research repository and are being incrementally integrated into this architecture.
 
 ---
 
@@ -43,15 +48,16 @@ quant-trading-model-zoo/
 ```
 ---
 
-## Models supported
+## Models
 
-- **RL:** PPO (reference), A2C, SAC, TD3, DDPG, Deep SARSA
+### Reference implementation
+- **PPO** — walk-forward training, reward shaping, and production signal serving
 
-- **Tree/Boosting:** XGBoost, LightGBM**
+### Planned / scaffolded
+- **Reinforcement Learning:** A2C, SAC, TD3, DDPG, Deep SARSA
+- **Tree / Boosting:** XGBoost, LightGBM
+- **Clustering:** KMeans (regime and feature bucketing)
 
-- **Clustering:** KMeans (regime/feature buckets)**
-
-All exposed through a uniform predict() adapter.**
 
 ## Platforms
 
