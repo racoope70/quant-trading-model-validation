@@ -21,7 +21,6 @@ PPO is the primary fully implemented and validated model. Additional models are 
 ---
 
 ## Repo layout
-## Repo layout
 
 ```text
 quant-trading-model-zoo/
@@ -61,6 +60,6 @@ quant-trading-model-zoo/
 
 ## Platforms
 
-- **QuantConnect:** consumer strategy polls your JSON (live_signals.json) and trades long-only with confidence sizing and freshness guard.**
+- **QuantConnect:** consumer strategy polls your JSON (live_signals.json) and trades long-only using confidence-based sizing with freshness guards.
 
-- **Alpaca (paper/live):** adapters provided for live testing and execution; supports simple latency simulation and a pluggable broker router.**
+- **Alpaca (paper/live):** adapters provided for live testing and execution; supports simple latency simulation and a pluggable broker router.
