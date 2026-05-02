@@ -1,11 +1,29 @@
-# Market ML Signals (Production)
+# Market ML Signals — Backtested Research Pipeline
 
-Production-ready market ML signals platform with a PPO-based walk-forward reference implementation, designed to support additional reinforcement learning and supervised models through a uniform feature, training, and signal-serving pipeline. Signals are exported via JSON and consumed by downstream execution platforms, including QuantConnect (LEAN) and Alpaca (paper/live).
+This repository contains a walk-forward PPO-based trading research system used for model validation, backtesting, and paper trading.  
+It represents the structured middle stage between exploratory research and a production-ready implementation.
+
+The system runs per-ticker walk-forward training and evaluation, saves artifacts per fold, and exports trading signals for downstream execution frameworks such as QuantConnect (LEAN).
+
+It provides a reproducible, structured workflow for validating models and generating signals prior to full production deployment.
 
 ---
 
 ## Status
-PPO is the primary fully implemented and validated model. Additional models are under active development in a separate research repository and are being incrementally integrated into this architecture.
+
+PPO is the primary fully implemented and validated model, with results confirmed through walk-forward backtesting and paper trading.
+
+This repository represents the validated research layer.  
+A separate repository will contain the fully production-ready implementation with modular code, CLI workflows, and local execution support.
+
+---
+## Repository Context
+
+This repository represents the **validated research stage** of the system:
+
+- Exploratory research and model experimentation are developed separately
+- This repo contains structured walk-forward training, backtesting, and signal validation
+- A final production repository will implement a fully modular, deployment-ready system
 
 ---
 
@@ -14,7 +32,7 @@ PPO is the primary fully implemented and validated model. Additional models are 
 - **Feature pipeline** — robust OHLCV normalization, wavelet denoising, technical + regime features, optional FinBERT sentiment.
 - **Model zoo** — interchangeable learners behind a standard inference adapter.
 - **Walk-forward training (PPO reference)** — rolling windows, confidence-based reward shaping, whipsaw penalty, regime filter.
-- **Artifacts for production** — saved models, `VecNormalize`/scalers, feature lists, probability config.
+- **Artifacts for deployment** — saved models, `VecNormalize`/scalers, feature lists, probability config.
 - **Signal serving** — JSON schema for downstream consumers; QuantConnect strategy polls and trades.
 - **Reporting** — summary metrics, daily risk plots (Sharpe, PSR, Win Rate), and run logs.
 
@@ -50,7 +68,7 @@ quant-trading-model-zoo/
 ## Models
 
 ### Reference implementation
-- **PPO** — walk-forward training, reward shaping, and production signal serving
+- **PPO** — walk-forward training, reward shaping, and signal generation for downstream execution
 
 ### Planned / scaffolded
 - **Reinforcement Learning:** A2C, SAC, TD3, DDPG, Deep SARSA
@@ -60,6 +78,6 @@ quant-trading-model-zoo/
 
 ## Platforms
 
-- **QuantConnect:** consumer strategy polls your JSON (live_signals.json) and trades long-only using confidence-based sizing with freshness guards.
+- **QuantConnect:** example for polling signals and executing trades in backtesting environments.
 
-- **Alpaca (paper/live):** adapters provided for live testing and execution; supports simple latency simulation and a pluggable broker router.
+- **Alpaca (paper/live):** adapters for integration and paper trading evaluation.
