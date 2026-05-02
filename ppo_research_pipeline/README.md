@@ -1,13 +1,13 @@
-# PPO Walk-Forward (External Signals) — Summary
+# PPO Walk-Forward Trading System — Backtested Research Pipeline
 
-This repo hosts a walk-forward PPO pipeline that produces external trading signals consumed by a QuantConnect (LEAN) client.  
+This repository contains a walk-forward PPO-based trading research pipeline that generates external trading signals for downstream execution systems such as QuantConnect (LEAN).  
 The model runs per-ticker walk-forward training/evaluation, saves artifacts per fold, and exports a clean signal feed for execution.
 
-## What’s new / improvements
+## Core Capabilities
 
 1) **Execution & Slippage Simulation**
    - Constant and impact-style slippage profiles; fee model hooks.
-   - QC integration validated (IB Margin + ConstantSlippageModel).
+   - Designed for integration with QuantConnect (LEAN); tested in paper-trading and backtesting environments.
 
 2) **Noise Filtering**
    - **Wavelet denoising** on price/feature series to reduce microstructure noise.
@@ -15,11 +15,11 @@ The model runs per-ticker walk-forward training/evaluation, saves artifacts per 
 3) **Market Regime Detection**
    - Volatility & trend state machine; regime used for feature gating and reward shaping.
 
-4) **Latency & Broker Integration**
+4) **Signal Export & Execution Interface (Research-Level)**
    - JSON signal emitter (RAW Gist alias) with `valid_until_utc` freshness guard.
    - Confidence-weighted targets (mapped to 10–50% caps) with cash buffer normalization.
 
-5) **Risk Management Module**
+5) **Risk Controls (Research-Level)**
    - Per-name caps, portfolio gross cap (~95% exposure), optional trade-cooldowns.
 
 6) **Feature Additions**
@@ -37,14 +37,14 @@ The model runs per-ticker walk-forward training/evaluation, saves artifacts per 
 
 ---
 
-## Minimal pipeline overview
+## Pipeline Overview (Research Workflow)
 
 - **Data → Features**: raw OHLCV (+ sentiment, Greeks proxies) → wavelet denoise → scale/clip.
 - **Split**: walk-forward folds (expanding or rolling).
 - **Train**: PPO per fold with reward shaping (confidence & whipsaw).
 - **Validate**: per fold; keep best checkpoint.
 - **Emit**: merge fold predictions → `live_signals.json` (per symbol).
-- **Execute**: QC consumer polls alias URL; maps confidence → holdings; enforces risk caps.
+- **Execute (Simulated)**: Signals can be consumed by external frameworks (e.g., QuantConnect) for backtesting or paper trading.
 
 ---
 
@@ -71,8 +71,8 @@ Use these patterns so everything lines up with the report and orders CSV:
 
 ### Setup
 ```bash
-git clone https://github.com/racoope70/quant-trading-model-zoo.git
-cd quant-trading-model-zoo/ppo-model-2024-09
+git clone https://github.com/racoope70/quantitative-trading-system.git
+cd quantitative-trading-system
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
