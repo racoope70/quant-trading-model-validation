@@ -5,7 +5,7 @@ It represents the structured middle stage between exploratory research and a pro
 
 The system runs per-ticker walk-forward training and evaluation, saves artifacts per fold, and exports trading signals for downstream execution frameworks such as QuantConnect (LEAN).
 
-It provides a reproducible, structured workflow for validating models and generating signals prior to full production deployment.
+It provides a reproducible workflow for validating models and generating trading signals prior to production deployment.
 
 ---
 
@@ -33,14 +33,14 @@ This repository represents the **validated research stage** of the system:
 - **Model zoo** — interchangeable learners behind a standard inference adapter.
 - **Walk-forward training (PPO reference)** — rolling windows, confidence-based reward shaping, whipsaw penalty, regime filter.
 - **Artifacts for deployment** — saved models, `VecNormalize`/scalers, feature lists, probability config.
-- **Signal serving** — JSON schema for downstream consumers; QuantConnect strategy polls and trades.
+- **Signal serving** — JSON schema for downstream consumers; QuantConnect example for consuming signals and executing trades in backtesting or paper trading environments.
 - **Reporting** — summary metrics, daily risk plots (Sharpe, PSR, Win Rate), and run logs.
 
 ---
 
 ## Repo layout
 
-## Repo layout
+The `trained_models/` directory contains saved PPO artifacts per ticker and walk-forward window.
 
 ```text
 quantitative-trading-system/
@@ -69,8 +69,28 @@ quantitative-trading-system/
 │   │   └── *_probability_config.json
 │   │
 │   └── ppo_multi_stock_training_pipeline.ipynb
-
 ```
+---
+
+## Usage (Research Workflow)
+
+Run the notebooks in sequence (training → backtesting → execution prep):
+
+- **Training pipeline**
+  - `ppo_research_pipeline/ppo_multi_stock_training_pipeline.ipynb`
+
+- **Per-ticker backtesting**
+  - `ppo_research_pipeline/GE/ge_signal_backtest.ipynb`
+  - `ppo_research_pipeline/UNH/unh_signal_backtest.ipynb`
+
+- **QuantConnect integration prep**
+  - `*_PPO_QuantConnect_Prep.ipynb`
+
+> Recommended: Run notebooks in Google Colab for compatibility with the original environment.
+
+This project was developed and tested in Google Colab.  
+Local execution may require minor path adjustments.
+
 ---
 
 ## Models
@@ -79,13 +99,14 @@ quantitative-trading-system/
 - **PPO** — walk-forward training, reward shaping, and signal generation for downstream execution
 
 ### Planned / scaffolded
-- **Reinforcement Learning:** A2C, SAC, TD3, DDPG, Deep SARSA
-- **Tree / Boosting:** XGBoost, LightGBM
+
+- **Reinforcement Learning:** A2C, SAC, TD3, DDPG, Deep SARSA  
+- **Tree / Boosting:** XGBoost, LightGBM  
 - **Clustering:** KMeans (regime and feature bucketing)
 
 
 ## Platforms
 
-- **QuantConnect:** example for polling signals and executing trades in backtesting environments.
+- **QuantConnect:** example consumer for polling signals and executing trades in backtesting or paper trading environments.
 
 - **Alpaca (paper/live):** adapters for integration and paper trading evaluation.
