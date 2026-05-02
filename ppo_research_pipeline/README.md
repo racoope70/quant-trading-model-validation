@@ -61,6 +61,7 @@ The model runs per-ticker walk-forward training/evaluation, saves artifacts per 
 
 All artifacts are grouped by **ticker** and **fold** under `artifacts/`.  
 Use these patterns so everything lines up with the report and orders CSV:
+
 Example artifact layout:
 
 ```text
@@ -70,12 +71,14 @@ ppo_research_pipeline/
   UNH/
   ppo_multi_stock_training_pipeline.ipynb
 ```
+
 ## Installation & Usage
 
 ### Prerequisites
 - Python 3.9+
 - pip or conda
 - Git
+- Google Colab (primary environment used for training and experimentation)
 
 ### Setup
 ```bash
@@ -85,8 +88,21 @@ cd quantitative-trading-system
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+```
+### Usage (Research Workflow)
 
-## Limitations / Next Step
+Run the following notebooks:
+
+- Training pipeline:
+  - `ppo_research_pipeline/ppo_multi_stock_training_pipeline.ipynb`
+
+- Backtesting:
+  - `ppo_research_pipeline/UNH/`
+  - `ppo_research_pipeline/GE/`
+
+> Recommended: Open notebooks in Google Colab for compatibility.
+
+### Limitations / Next Step
 
 This project is notebook-centered and intended for research validation.  
 A separate production-ready repository will refactor the workflow into modular Python files with CLI commands, local path handling, and no Google Colab dependencies.
