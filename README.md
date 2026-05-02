@@ -40,27 +40,35 @@ This repository represents the **validated research stage** of the system:
 
 ## Repo layout
 
+## Repo layout
+
 ```text
-quant-trading-model-zoo/
+quantitative-trading-system/
 ├── README.md
-├── src/
-│   ├── features/                # feature engineering, regimes, denoise
-│   ├── models/                  # model wrappers (PPO, XGB, LGBM, etc.)
-│   ├── adapters/                # one-line predict() adapters
-│   └── serving/                 # JSON signal writer, web handler
-├── training/
-│   ├── walkforward_ppo.py       # reference walkforward trainer
-│   └── configs/                 # hyperparams per symbol/bucket
-├── artifacts/
-│   ├── models/                  # *.zip / *.pkl / feature lists
-│   └── signals/                 # latest live_signals.json
-├── platforms/
-│   └── quantconnect/
-│       └── main.py              # ExternalSignalConsumer (polls JSON)
-├── notebooks/                   # exploratory notebooks (optional)
-├── scripts/                     # CLI helpers (train, serve, export)
-├── reports/                     # backtest summaries/plots
-└── .env.example                 # example secrets (no real keys)
+├── requirements.txt
+├── ppo_research_pipeline/
+│   ├── GE/
+│   │   ├── ge_signal_backtest.ipynb
+│   │   ├── GE_PPO_QuantConnect_Prep.ipynb
+│   │   ├── ExternalSignals_LongOnly_Backtest_*.pdf
+│   │   ├── GE_logs_*.txt
+│   │   └── *_orders_*.csv
+│   │
+│   ├── UNH/
+│   │   ├── unh_signal_backtest.ipynb
+│   │   ├── UNH_PPO_QuantConnect_Prep.ipynb
+│   │   ├── ExternalSignals_LongOnly_Backtest_*.pdf
+│   │   ├── UNH_logs_*.txt
+│   │   └── *_orders_*.csv
+│   │
+│   ├── trained_models/
+│   │   ├── ppo_*_model.zip
+│   │   ├── *_vecnorm.pkl
+│   │   ├── *_features.json
+│   │   ├── *_model_info.json
+│   │   └── *_probability_config.json
+│   │
+│   └── ppo_multi_stock_training_pipeline.ipynb
 
 ```
 ---
