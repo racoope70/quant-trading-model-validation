@@ -73,6 +73,7 @@ Use these patterns so everything lines up with the report and orders CSV:
 ```bash
 git clone https://github.com/racoope70/quantitative-trading-system.git
 cd quantitative-trading-system
+
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
