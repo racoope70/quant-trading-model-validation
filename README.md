@@ -33,8 +33,8 @@ This repository represents the **validated research stage** of the system:
 - **Model zoo** — interchangeable learners behind a standard inference adapter.
 - **Walk-forward training (PPO reference)** — rolling windows, confidence-based reward shaping, whipsaw penalty, regime filter.
 - **Artifacts for deployment** — saved models, `VecNormalize`/scalers, feature lists, probability config.
-- **Signal serving** — JSON schema for downstream consumers; QuantConnect example for consuming signals and executing trades in backtesting or paper trading environments.
-- **Reporting** — summary metrics, daily risk plots (Sharpe, PSR, Win Rate), and run logs.
+- **Signal serving** — JSON schema for downstream consumers; QuantConnect example for consuming signals and executing trades in backtesting or paper trading.
+- **Reporting** — summary metrics, backtest metrics and risk analysis (Sharpe, PSR, Win Rate), and run logs.
 
 ---
 
@@ -104,6 +104,7 @@ Local execution may require minor path adjustments.
 - **Tree / Boosting:** XGBoost, LightGBM  
 - **Clustering:** KMeans (regime and feature bucketing)
 
+---
 
 ## Platforms
 
