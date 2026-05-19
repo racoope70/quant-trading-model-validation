@@ -1,0 +1,58 @@
+{
+  "run_name": "ppo_six_ticker_paper_trading_dry_run",
+  "description": "No-order Alpaca dry-run for the validated six-ticker PPO baseline. The script loads artifacts, fetches current Alpaca bars, predicts target weights, compares target vs actual positions, and writes diagnostics only.",
+  "symbols": [
+    "AAPL",
+    "AMD",
+    "MRK",
+    "PFE",
+    "UNH",
+    "XOM"
+  ],
+  "artifacts_dir": "artifacts",
+  "results_dir": "reports/paper_trading/dry_run",
+  "allow_orders": false,
+  "paper_account": true,
+  "data_feed": "iex",
+  "bar_timeframe": "1H",
+  "lookback_bars": 240,
+  "weight_cap": 0.4,
+  "allow_shorts": true,
+  "deterministic": true,
+  "feature_fill_policy": "zero_fill_with_warning",
+  "artifact_patterns": {
+    "model": [
+      "ppo_{symbol}_window*_model.zip",
+      "*{symbol}*model.zip"
+    ],
+    "vecnormalize": [
+      "ppo_{symbol}_window*_vecnorm.pkl",
+      "ppo_{symbol}_window*_vecnormalize.pkl",
+      "*{symbol}*vecnorm*.pkl",
+      "*{symbol}*vecnormalize*.pkl"
+    ],
+    "features": [
+      "ppo_{symbol}_window*_features.json",
+      "*{symbol}*features.json"
+    ],
+    "probability_config": [
+      "ppo_{symbol}_window*_probability_config.json",
+      "*{symbol}*probability_config.json"
+    ],
+    "model_info": [
+      "ppo_{symbol}_window*_model_info.json",
+      "*{symbol}*model_info.json"
+    ]
+  },
+  "environment_variables": {
+    "api_key_id": [
+      "APCA_API_KEY_ID",
+      "ALPACA_API_KEY_ID"
+    ],
+    "secret_key": [
+      "APCA_API_SECRET_KEY",
+      "ALPACA_API_SECRET_KEY"
+    ]
+  },
+  "expected_command": "python -m src.paper_trading.paper_trade_dry_run"
+}
