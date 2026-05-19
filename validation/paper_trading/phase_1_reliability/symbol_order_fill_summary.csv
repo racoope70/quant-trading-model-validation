@@ -1,0 +1,3 @@
+symbol,rows,submitted_sum,filled_like_count,canceled_like_count,rejected_like_count,other_status_count,fill_rate_vs_submitted,avg_target_weight,avg_actual_weight,avg_confidence,avg_raw_action,last_note
+UNH,10,5,4,0,0,6,0.8,-0.22508811950683594,-0.19555468167475382,0.5627202987670898,-0.5627202987670898,heartbeat_skip_same_bar
+GE,10,1,1,0,0,9,1.0,-0.02086665272712706,-0.0400465783816552,0.12639777958393092,-0.0521666318178177,heartbeat_skip_same_bar
