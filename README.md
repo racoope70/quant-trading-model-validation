@@ -1,6 +1,6 @@
 # Market ML Signals — Backtested Research Pipeline
 
-This repository contains a walk-forward PPO-based trading research system used for model validation, backtesting, and paper trading.  
+This repository contains walk-forward machine learning trading research pipelines used for model validation, backtesting, and paper trading.
 It represents the structured middle stage between exploratory research and a production-ready implementation.
 
 The system runs per-ticker walk-forward training and evaluation, saves artifacts per fold, and exports trading signals for downstream execution frameworks such as QuantConnect (LEAN).
@@ -11,7 +11,7 @@ It provides a reproducible workflow for validating models and generating trading
 
 ## Status
 
-PPO is the primary fully implemented and validated model, with results confirmed through walk-forward backtesting and paper trading.
+Two model candidates have completed the validation stage: a standalone PPO signal model and a PPO + Random Forest Gate hybrid. The PPO model has already been promoted into the deployment repository; the PPO + RF hybrid is the next candidate for deployment conversion.
 
 This repository represents the validated research layer.  
 A separate repository will contain the fully production-ready implementation with modular code, CLI workflows, and local execution support.
@@ -66,12 +66,13 @@ This repository represents the **validated research stage** of the system:
 ## What’s inside
 
 - **Feature pipeline** — robust OHLCV normalization, wavelet denoising, technical + regime features, optional FinBERT sentiment.
-- **Model zoo** — interchangeable learners behind a standard inference adapter.
+- **Model validation framework** — structured comparison of PPO-only and hybrid PPO + supervised-gate approaches under consistent walk-forward assumptions.
 - **Walk-forward training (PPO reference)** — rolling windows, confidence-based reward shaping, whipsaw penalty, regime filter.
 - **Artifacts for deployment** — saved models, `VecNormalize`/scalers, feature lists, probability config.
 - **Signal serving** — JSON schema for downstream consumers; QuantConnect example for consuming signals and executing trades in backtesting or paper trading.
 - **Reporting** — summary metrics, backtest metrics and risk analysis (Sharpe, PSR, Win Rate), and run logs.
 - **Paper-trading dry run** — local VS Code-compatible Alpaca dry-run module for no-order artifact/prediction validation.
+- **Validated model candidates** — PPO-only and PPO + Random Forest Gate have both completed validation; PPO has been migrated to the deployment repository, and PPO + RF is next in the deployment queue.
 
 ---
 
