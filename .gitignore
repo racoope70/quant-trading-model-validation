@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Credentials and local runtime configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Local artifacts and generated outputs
+artifacts/
+models/
+trained_models/
+reports/
+results/
+*.zip
+*.pkl
+*.joblib
+*.pt
+*.pth
+*.onnx
+
+# Notebook/runtime noise
+.ipynb_checkpoints/
+.DS_Store
+
+# Keep curated validation evidence under validation/
+!validation/
+!validation/**
