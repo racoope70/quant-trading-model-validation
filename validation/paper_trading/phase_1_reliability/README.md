@@ -79,6 +79,7 @@ Recommended repository boundary:
 ```text
 validation repository = validation evidence, reliability reports, run diagnostics, and reproducibility notes
 deployment repository = executable VS Code paper-trading system, broker loop, runtime controls, and operational monitoring
+```
 
 ## Clean repo split
 
