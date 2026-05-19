@@ -66,6 +66,20 @@ This validation supports broker-side reliability, not strategy profitability. Th
 
 The appropriate next step is to keep this folder as validation evidence, then implement a clean VS Code dry-run module under `src/paper_trading/`. That dry-run should load the PPO artifact set, fetch Alpaca bars, predict target weights, compare target versus actual broker positions, and write logs without submitting orders.
 
+## Deployment repository handoff
+
+Final paper-trading implementation is expected to continue in the separate VS Code deployment repository rather than inside this validation repository.
+
+This repository is intended to preserve validation evidence, reliability reports, sample logs, and reproducibility notes. The deployment repository is responsible for the production-style paper-trading system, including broker-loop implementation, local configuration, runtime controls, order-submission logic, and operational monitoring.
+
+The current `v1` naming is acceptable as long as it represents the first complete deployable paper-trading implementation. A future `v2` is not required unless the architecture materially changes.
+
+Recommended interpretation:
+
+```text
+validation repository = proof, reports, reliability evidence
+deployment repository = executable VS Code paper-trading system
+
 ## Clean repo split
 
 ```text
