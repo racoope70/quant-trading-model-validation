@@ -130,14 +130,15 @@ Local execution may require minor path adjustments.
 
 ## Models
 
-### Reference implementation
-- **PPO** — walk-forward training, reward shaping, and signal generation for downstream execution
+### Validated models
 
-### Planned / scaffolded
+- **PPO** — validated walk-forward reinforcement learning model for position sizing, reward shaping, and downstream signal generation. This model has been promoted into the deployment repository.
 
-- **Reinforcement Learning:** A2C, SAC, TD3, DDPG, Deep SARSA  
-- **Tree / Boosting:** XGBoost, LightGBM  
-- **Clustering:** KMeans (regime and feature bucketing)
+- **PPO + Random Forest Gate** — validated hybrid model where PPO handles position sizing and the Random Forest gate filters low-quality trade environments before exposure is allowed. This model is the next candidate for deployment conversion.
+
+### Next hybrid candidate
+
+- **PPO + XGBoost Gate** — planned challenger model using the same data, feature set, walk-forward structure, and validation assumptions as PPO + RF. The goal is to compare XGBoost against Random Forest as the supervised trade-participation gate while keeping the PPO policy layer consistent.
 
 ---
 
