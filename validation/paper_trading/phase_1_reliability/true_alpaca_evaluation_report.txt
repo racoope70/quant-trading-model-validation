@@ -1,0 +1,243 @@
+==========================================================================================
+ALPACA LIVE-RUN EVALUATION REPORT — PHASE 1 RELIABILITY VALIDATION
+Live run folder: /content/drive/MyDrive/AlpacaPaper/results/2026-05-18_13-36-06
+==========================================================================================
+
+PATH CHECK
+LIVE_ROOT          : exists -> /content/drive/MyDrive/AlpacaPaper
+RESULTS_ROOT       : exists -> /content/drive/MyDrive/AlpacaPaper/results
+TRAINING_RUN_ROOT  : exists -> /content/drive/MyDrive/AlpacaPaper
+QC_TOP_DIR         : exists -> /content/drive/MyDrive/AlpacaPaper/artifacts
+MASTER_MODEL_DIR   : exists -> /content/drive/MyDrive/AlpacaPaper/artifacts
+ARTIFACTS_DIR      : exists -> /content/drive/MyDrive/AlpacaPaper/artifacts
+
+ARTIFACT COUNTS
+
+QC_TOP_DIR
+  exists                  : True
+  total files             : 16
+  model zip files         : 3
+  vecnorm pkl files       : 3
+  features json files     : 3
+  probability config json : 3
+  model info json         : 3
+
+MASTER_MODEL_DIR
+  exists                  : True
+  total files             : 16
+  model zip files         : 3
+  vecnorm pkl files       : 3
+  features json files     : 3
+  probability config json : 3
+  model info json         : 3
+
+ARTIFACTS_DIR
+  exists                  : True
+  total files             : 16
+  model zip files         : 3
+  vecnorm pkl files       : 3
+  features json files     : 3
+  probability config json : 3
+  model info json         : 3
+
+Artifact symbol summary:
+symbol window                     model  vecnorm_exists  features_exists  probability_config_exists  model_info_exists
+   CVX      1 ppo_CVX_window1_model.zip            True             True                       True               True
+    GE      1  ppo_GE_window1_model.zip            True             True                       True               True
+   UNH      3 ppo_UNH_window3_model.zip            True             True                       True               True
+
+LIVE RUN FILE CHECK
+run_summary.csv        : found
+trade_log_master.csv   : found
+equity_log.csv         : found
+live_loop.log          : found
+run_config.json        : found
+equity_curve.png       : found
+trade_log_GE.csv       : found
+trade_log_UNH.csv      : found
+
+RUN CONFIG CHECK
+run_version               : ppo_alpaca_reliability_v2
+tickers                   : ['UNH', 'GE']
+dry_run                   : False
+bars_feed                 : iex
+weight_cap                : 0.4
+sizing_mode               : linear
+enter_conf_min            : 0.02
+enter_weight_min          : 0.002
+exit_weight_max           : 0.001
+rebalance_min_notional    : 25.0
+allow_shorts              : True
+flatten_into_close        : True
+exit_after_close          : True
+force_flatten_on_exit     : True
+data_timeframe            : 1H
+train_timeframe           : 1H
+cooldown_min              : 10
+stale_max_sec             : 4200
+
+EQUITY SUMMARY
+Run-summary rows   : 28
+Start Equity       : $93,990.44
+End Equity         : $93,735.77
+Net Equity Change  : $-254.67
+Return             : -0.2710%
+Max Drawdown       : -0.2801%
+
+EXPOSURE SUMMARY
+Avg Gross Exposure : 26.8393%
+Max Gross Exposure : 32.3489%
+Avg Net Exposure   : -26.8393%
+Max |Net| Exposure : 32.3489%
+Percent Time Flat  : 3.5714%
+
+MASTER TRADE EVENT LOG
+Rows          : 20
+Unique tickers : 2
+
+Trades by ticker:
+  UNH: 10
+  GE: 10
+
+Master action counts:
+  heartbeat_skip_same_bar: 10
+  rebalance_only: 6
+  no_trade_gate: 2
+  raw_gate_long: 1
+  raw_gate_short: 1
+
+Master signal counts:
+  -1: 16
+   1: 2
+   0: 2
+
+PER-SYMBOL ORDER / FILL SUMMARY
+symbol  rows  submitted_sum  filled_like_count  canceled_like_count  rejected_like_count  other_status_count  fill_rate_vs_submitted  avg_target_weight  avg_actual_weight  avg_confidence  avg_raw_action               last_note
+   UNH    10              5                  4                    0                    0                   6                     0.8          -0.225088          -0.195555        0.562720       -0.562720 heartbeat_skip_same_bar
+    GE    10              1                  1                    0                    0                   9                     1.0          -0.020867          -0.040047        0.126398       -0.052167 heartbeat_skip_same_bar
+
+Aggregate order/fill totals:
+  Submitted sum     : 6
+  Filled-like count : 5
+  Canceled-like     : 0
+  Rejected-like     : 0
+  Fill rate         : 83.3333%
+
+SYMBOL DIAGNOSTICS
+
+--- GE ---
+Rows                : 10
+Submitted sum       : 1
+Filled-like count   : 1
+Canceled-like count : 0
+Rejected-like count : 0
+Fill rate           : 100.0000%
+Avg target weight   : -0.02086665272712706
+Avg actual weight   : -0.0400465783816552
+Avg confidence      : 0.12639777958393092
+Avg raw action      : -0.0521666318178177
+Last note           : heartbeat_skip_same_bar
+Signal counts:
+  SHORT: 6
+  LONG: 2
+  FLAT: 2
+Top notes:
+  heartbeat_skip_same_bar: 5
+  no_trade_gate: 2
+  raw_gate_long: 1
+  rebalance_only: 1
+  raw_gate_short: 1
+Order status counts:
+  NaN: 9
+  OrderStatus.FILLED: 1
+
+--- UNH ---
+Rows                : 10
+Submitted sum       : 5
+Filled-like count   : 4
+Canceled-like count : 0
+Rejected-like count : 0
+Fill rate           : 80.0000%
+Avg target weight   : -0.22508811950683594
+Avg actual weight   : -0.19555468167475382
+Avg confidence      : 0.5627202987670898
+Avg raw action      : -0.5627202987670898
+Last note           : heartbeat_skip_same_bar
+Signal counts:
+  SHORT: 10
+Top notes:
+  rebalance_only: 5
+  heartbeat_skip_same_bar: 5
+Order status counts:
+  NaN: 5
+  OrderStatus.FILLED: 4
+  OrderStatus.NEW: 1
+
+WHAT THIS REPORT CAN AND CANNOT PROVE
+Supported by the current logs:
+- equity start/end/change
+- total return
+- max drawdown
+- gross/net exposure from run_summary.csv
+- per-symbol order submission and order-status patterns
+- event-log action/signal/note breakdowns
+- artifact folder existence and artifact file counts
+
+Not reliably supported by the current logs:
+- exact broker-confirmed realized PnL by trade
+- exact broker-confirmed closed-trade win rate
+- exact broker-confirmed profit factor
+- exact broker-confirmed best/worst trade PnL
+- exact fills ledger from Alpaca activities
+
+No realized-PnL trade ledger columns were found in the available CSVs.
+
+INFERRED CLOSED-TRADE PNL ANALYTICS
+Method: estimated from run_summary position_qty and position_mv changes.
+Important: useful for analysis, but not a perfect Alpaca fills ledger.
+Closed trades        : 4
+Wins                 : 1
+Losses               : 3
+Closed-trade win rate: 25.0000%
+Gross profit         : $9.36
+Gross loss           : $-30.40
+Profit factor        : 0.3078441045880748
+Best trade PnL       : $9.36
+Worst trade PnL      : $-23.40
+Total realized PnL est: $-21.04
+
+LOG WARNING / ERROR SCAN
+Warning/error-like lines found: 1
+Recent warning/error lines:
+2026-05-18 18:07:54,793 | WARNING | [FLATTEN] strict flatten begin for symbols=['UNH', 'GE']
+
+Specific reliability keyword scan:
+  No models loaded                : not found
+  Missing Alpaca credentials      : not found
+  VecNormalize load failed        : not found
+  No PPO model zip found          : not found
+  No recent bars                  : not found
+  Observation stale               : not found
+  Not enough bars                 : not found
+  get_stock_bars failed           : not found
+  submit_order(qty) failed        : not found
+  Sell blocked                    : not found
+  short-open qty truncates        : not found
+  insufficient qty                : not found
+  close_flatten_failed            : not found
+  strict flatten timed out        : not found
+  NOT FULLY FLAT                  : not found
+  Traceback                       : not found
+  Exception                       : not found
+  ERROR                           : not found
+
+QUICK TAKE
+- Artifact path exists and contains deployable PPO model zip files.
+- Run finished negative on account equity.
+- Bot maintained exposure for a meaningful share of the run.
+- Observed fill rate looks reasonable relative to submitted orders.
+
+PHASE 1 RELIABILITY CONCLUSION
+Phase 1 Reliability: PASSED
+
+This is an operational reliability pass, not a profitability claim.
