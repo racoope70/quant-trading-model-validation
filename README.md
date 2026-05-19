@@ -17,6 +17,42 @@ This repository represents the validated research layer.
 A separate repository will contain the fully production-ready implementation with modular code, CLI workflows, and local execution support.
 
 ---
+
+## Paper-Trading Reliability Validation
+
+The first Alpaca paper-trading reliability phase is documented under:
+
+```text
+validation/paper_trading/phase_1_reliability/
+```
+
+**Phase 1 Reliability: PASSED**
+
+The validation evidence confirms that PPO artifacts loaded correctly, Alpaca paper credentials connected, model predictions executed, paper orders were submitted/filled, no duplicate-order or stale-bar failures were observed, strict flatten completed successfully, and run summaries/logs were produced.
+
+This is an operational reliability pass, not a profitability claim.
+
+---
+
+## Local Paper-Trading Dry Run
+
+Broker-facing logic is implemented separately from validation evidence:
+
+```text
+src/paper_trading/
+config/paper_trading_six_ticker_manifest.json
+```
+
+The first local command is intentionally no-order:
+
+```bash
+python -m src.paper_trading.paper_trade_dry_run
+```
+
+The dry run loads PPO artifacts, fetches Alpaca bars, predicts target weights, compares target versus actual paper-account positions, and logs diagnostics.  It does **not** submit orders.
+
+---
+
 ## Repository Context
 
 This repository represents the **validated research stage** of the system:
@@ -35,6 +71,7 @@ This repository represents the **validated research stage** of the system:
 - **Artifacts for deployment** — saved models, `VecNormalize`/scalers, feature lists, probability config.
 - **Signal serving** — JSON schema for downstream consumers; QuantConnect example for consuming signals and executing trades in backtesting or paper trading.
 - **Reporting** — summary metrics, backtest metrics and risk analysis (Sharpe, PSR, Win Rate), and run logs.
+- **Paper-trading dry run** — local VS Code-compatible Alpaca dry-run module for no-order artifact/prediction validation.
 
 ---
 
@@ -43,33 +80,31 @@ This repository represents the **validated research stage** of the system:
 The `trained_models/` directory contains saved PPO artifacts per ticker and walk-forward window.
 
 ```text
-quantitative-trading-system/
+quant-trading-model-validation/
 ├── README.md
 ├── requirements.txt
-├── ppo_research_pipeline/
-│   ├── GE/
-│   │   ├── ge_signal_backtest.ipynb
-│   │   ├── GE_PPO_QuantConnect_Prep.ipynb
-│   │   ├── ExternalSignals_LongOnly_Backtest_*.pdf
-│   │   ├── GE_logs_*.txt
-│   │   └── *_orders_*.csv
-│   │
-│   ├── UNH/
-│   │   ├── unh_signal_backtest.ipynb
-│   │   ├── UNH_PPO_QuantConnect_Prep.ipynb
-│   │   ├── ExternalSignals_LongOnly_Backtest_*.pdf
-│   │   ├── UNH_logs_*.txt
-│   │   └── *_orders_*.csv
-│   │
-│   ├── trained_models/
-│   │   ├── ppo_*_model.zip
-│   │   ├── *_vecnorm.pkl
-│   │   ├── *_features.json
-│   │   ├── *_model_info.json
-│   │   └── *_probability_config.json
-│   │
-│   └── ppo_multi_stock_training_pipeline.ipynb
+├── config/
+│   └── paper_trading_six_ticker_manifest.json
+├── src/
+│   └── paper_trading/
+│       ├── __init__.py
+│       ├── artifact_manifest.py
+│       ├── artifact_loader.py
+│       └── paper_trade_dry_run.py
+├── validation/
+│   └── paper_trading/
+│       └── phase_1_reliability/
+│           ├── README.md
+│           ├── true_alpaca_evaluation_report.txt
+│           ├── run_summary_sample.csv
+│           ├── symbol_order_fill_summary.csv
+│           └── artifact_symbol_summary.csv
+└── ppo_research_pipeline/
+    ├── GE/
+    ├── UNH/
+    └── trained_models/
 ```
+
 ---
 
 ## Usage (Research Workflow)
