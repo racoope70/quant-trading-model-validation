@@ -68,17 +68,17 @@ The appropriate next step is to keep this folder as validation evidence, then im
 
 ## Deployment repository handoff
 
-Final paper-trading implementation is expected to continue in the separate VS Code deployment repository rather than inside this validation repository.
+Final paper-trading implementation will continue in the separate VS Code deployment repository rather than inside this validation repository.
 
-This repository is intended to preserve validation evidence, reliability reports, sample logs, and reproducibility notes. The deployment repository is responsible for the production-style paper-trading system, including broker-loop implementation, local configuration, runtime controls, order-submission logic, and operational monitoring.
+This repository is intended to preserve validation evidence, reliability reports, sample logs, run diagnostics, and reproducibility notes. The deployment repository is responsible for the production-style paper-trading system, including broker-loop implementation, local configuration, runtime controls, order-submission logic, and operational monitoring.
 
-The current `v1` naming is acceptable as long as it represents the first complete deployable paper-trading implementation. A future `v2` is not required unless the architecture materially changes.
+The current `v1` naming is appropriate if it represents the first stable deployable paper-trading implementation. Additional versioning is only necessary if the architecture, execution logic, or risk-control framework materially changes.
 
-Recommended interpretation:
+Recommended repository boundary:
 
 ```text
-validation repository = proof, reports, reliability evidence
-deployment repository = executable VS Code paper-trading system
+validation repository = validation evidence, reliability reports, run diagnostics, and reproducibility notes
+deployment repository = executable VS Code paper-trading system, broker loop, runtime controls, and operational monitoring
 
 ## Clean repo split
 
