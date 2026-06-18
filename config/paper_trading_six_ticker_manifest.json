@@ -1,6 +1,6 @@
 {
   "run_name": "ppo_six_ticker_paper_trading_dry_run",
-  "description": "No-order Alpaca dry-run for the validated six-ticker PPO baseline. The script loads artifacts, fetches current Alpaca bars, predicts target weights, compares target vs actual positions, and writes diagnostics only.",
+  "description": "No-order Alpaca dry-run for the legacy six-ticker PPO baseline. The script loads artifacts, fetches current Alpaca bars, predicts target weights, compares target vs actual positions, and writes diagnostics only.",
   "symbols": [
     "AAPL",
     "AMD",
