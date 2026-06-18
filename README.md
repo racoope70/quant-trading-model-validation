@@ -1,20 +1,19 @@
-# Market ML Signals — Backtested Research Pipeline
+# Market ML Signals - Backtested Research Pipeline
 
 This repository contains walk-forward machine learning trading research pipelines used for model validation, backtesting, and paper trading.
 It represents the structured middle stage between exploratory research and a production-ready implementation.
 
 The system runs per-ticker walk-forward training and evaluation, saves artifacts per fold, and exports trading signals for downstream execution frameworks such as QuantConnect (LEAN).
 
-It provides a reproducible workflow for validating models and generating trading signals prior to production deployment.
+It provides a reproducible workflow for preserving research evidence, auditing baseline models, and supporting future model-development decisions.
 
 ---
 
 ## Status
 
-Two model candidates have completed the validation stage: a standalone PPO signal model and a PPO + Random Forest Gate hybrid. The PPO model has already been promoted into the deployment repository; the PPO + RF hybrid is the next candidate for deployment conversion.
+Two model candidates emerged from the original research pipeline: a standalone PPO signal model and a PPO + Random Forest Gate hybrid. Under today's stricter trading-readiness standard, these models are legacy baselines. They were research-promising and infrastructure-worthy, but they do not satisfy the criteria for controlled paper submission, live trading, or hybrid deployment. The PPO model is preserved for audit and infrastructure validation purposes, and the PPO + RF hybrid remains a research baseline. Neither model is promoted for deployment conversion under the current standard.
 
-This repository represents the validated research layer.  
-A separate repository will contain the fully production-ready implementation with modular code, CLI workflows, and local execution support.
+This repository represents a legacy research validation layer. A separate deployment repository implements the governed no-submit infrastructure and audit pipeline; it does not contain trading-ready logic. Any future production implementation should follow a new PPO v2 retraining and modern audit process.
 
 ---
 
@@ -49,30 +48,31 @@ The first local command is intentionally no-order:
 python -m src.paper_trading.paper_trade_dry_run
 ```
 
-The dry run loads PPO artifacts, fetches Alpaca bars, predicts target weights, compares target versus actual paper-account positions, and logs diagnostics.  It does **not** submit orders.
+The dry run loads legacy PPO artifacts, fetches Alpaca bars, predicts target weights, compares target versus actual paper-account positions, and logs diagnostics. It does **not** submit orders.
 
 ---
 
 ## Repository Context
 
-This repository represents the **validated research stage** of the system:
+This repository represents the legacy research validation stage of the system:
 
 - Exploratory research and model experimentation are developed separately
-- This repo contains structured walk-forward training, backtesting, and signal validation
-- A final production repository will implement a fully modular, deployment-ready system
+- This repo contains structured walk-forward training, backtesting, and signal validation evidence for baseline models
+- The current deployment repo is responsible for governed no-submit infrastructure and audit behavior
+- Future trading-readiness work requires PPO v2 retraining under stricter validation standards
 
 ---
 
-## What’s inside
+## What is inside
 
-- **Feature pipeline** — robust OHLCV normalization, wavelet denoising, technical + regime features, optional FinBERT sentiment.
-- **Model validation framework** — structured comparison of PPO-only and hybrid PPO + supervised-gate approaches under consistent walk-forward assumptions.
-- **Walk-forward training (PPO reference)** — rolling windows, confidence-based reward shaping, whipsaw penalty, regime filter.
-- **Artifacts for deployment** — saved models, `VecNormalize`/scalers, feature lists, probability config.
-- **Signal serving** — JSON schema for downstream consumers; QuantConnect example for consuming signals and executing trades in backtesting or paper trading.
-- **Reporting** — summary metrics, backtest metrics and risk analysis (Sharpe, PSR, Win Rate), and run logs.
-- **Paper-trading dry run** — local VS Code-compatible Alpaca dry-run module for no-order artifact/prediction validation.
-- **Validated model candidates** — PPO-only and PPO + Random Forest Gate have both completed validation; PPO has been migrated to the deployment repository, and PPO + RF is next in the deployment queue.
+- **Feature pipeline** - robust OHLCV normalization, wavelet denoising, technical + regime features, optional FinBERT sentiment.
+- **Model validation framework** - structured comparison of PPO-only and hybrid PPO + supervised-gate approaches under consistent walk-forward assumptions.
+- **Walk-forward training (PPO reference)** - rolling windows, confidence-based reward shaping, whipsaw penalty, regime filter.
+- **Legacy artifacts** - saved models, `VecNormalize`/scalers, feature lists, probability config, and model-info files preserved for audit and reproducibility.
+- **Signal serving evidence** - JSON schema for downstream consumers; QuantConnect example for consuming signals and executing trades in backtesting or paper trading.
+- **Reporting** - summary metrics, backtest metrics and risk analysis (Sharpe, PSR, Win Rate), and run logs.
+- **Paper-trading dry run** - local VS Code-compatible Alpaca dry-run module for no-order artifact/prediction validation.
+- **Legacy baseline models** - PPO-only and PPO + Random Forest Gate are preserved as research baselines. They are research-promising and infrastructure-worthy but do not meet current trading-readiness standards. Neither model is promoted for controlled paper submission or live deployment.
 
 ---
 
@@ -110,7 +110,7 @@ quant-trading-model-validation/
 
 ## Usage (Research Workflow)
 
-Run the notebooks in sequence (training → backtesting → execution prep):
+Run the notebooks in sequence (training -> backtesting -> execution prep):
 
 - **Training pipeline**
   - `ppo_research_pipeline/ppo_multi_stock_training_pipeline.ipynb`
@@ -131,15 +131,15 @@ Local execution may require minor path adjustments.
 
 ## Models
 
-### Validated models
+### Legacy baseline models
 
-- **PPO** — validated walk-forward reinforcement learning model for position sizing, reward shaping, and downstream signal generation. This model has been promoted into the deployment repository.
+- **PPO** - legacy walk-forward reinforcement learning model for position sizing and reward shaping. It served as a research-promising, infrastructure-worthy baseline and is preserved for audit and future comparison. Under today's standards it is not paper-submit-ready, live-trading-ready, or hybrid-deployment-ready.
 
-- **PPO + Random Forest Gate** — validated hybrid model where PPO handles position sizing and the Random Forest gate filters low-quality trade environments before exposure is allowed. This model is the next candidate for deployment conversion.
+- **PPO + Random Forest Gate** - legacy hybrid where PPO handles position sizing and a Random Forest gate filters low-quality trade environments. This model is retained as a research baseline for comparison against future PPO v2 hybrids; it is not a candidate for deployment conversion under the current standard.
 
-### Next hybrid candidate
+### Future candidate
 
-- **PPO + XGBoost Gate** — planned challenger model using the same data, feature set, walk-forward structure, and validation assumptions as PPO + RF. The goal is to compare XGBoost against Random Forest as the supervised trade-participation gate while keeping the PPO policy layer consistent.
+- **PPO + XGBoost Gate** - planned challenger model only after the baseline audit and PPO v2 design are complete. XGBoost should not be treated as deployment-ready until it passes the same stricter validation standard.
 
 ---
 
