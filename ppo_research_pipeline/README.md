@@ -1,9 +1,15 @@
-# PPO Walk-Forward Trading System — Backtested Research Pipeline
+# PPO Walk-Forward Trading System - Legacy Research Baseline
 
 This repository contains a walk-forward PPO-based trading research pipeline that generates external trading signals for downstream execution systems such as QuantConnect (LEAN).  
 The model runs per-ticker walk-forward training/evaluation, saves artifacts per fold, and exports a clean signal feed for backtesting, paper trading, and downstream execution testing.
 
-**Status:** This repository represents a structured research, backtesting, and paper-trading validation layer. It is not the final production-ready VS Code implementation.
+**Status:** This folder is preserved as a legacy PPO research baseline. The original work was research-promising and infrastructure-worthy, but it is not sufficient for controlled paper submission, hybrid deployment, or live trading under today's stricter validation standard. It is not the final production-ready VS Code implementation.
+
+## Current interpretation
+
+The PPO pipeline is useful as historical validation evidence and as an infrastructure fixture. It should not be described as a fully validated trading model. The old model-selection process appears to have relied heavily on saved window metrics such as final portfolio value, buy-and-hold comparison, and Sharpe ranking. That evidence is useful, but it is not enough by itself for today's trading-readiness standard.
+
+Future PPO work should begin with a modern model-quality audit and PPO v2 retraining design before any controlled submit, hybrid deployment, or live-trading claim is made.
 
 ## Core Capabilities
 
@@ -19,7 +25,7 @@ The model runs per-ticker walk-forward training/evaluation, saves artifacts per 
 
 4) **Signal Export & Execution Interface (Research-Level)**
    - JSON signal emitter (RAW Gist alias) with `valid_until_utc` freshness guard.
-   - Confidence-weighted targets (mapped to 10–50% caps) with cash buffer normalization.
+   - Confidence-weighted targets (mapped to 10-50% caps) with cash buffer normalization.
 
 5) **Risk Controls (Research-Level)**
    - Per-name caps, portfolio gross cap (~95% exposure), optional trade-cooldowns.
@@ -41,19 +47,21 @@ The model runs per-ticker walk-forward training/evaluation, saves artifacts per 
 
 ## Pipeline Overview (Research Workflow)
 
-- **Data → Features**: raw OHLCV (+ sentiment, Greeks proxies) → wavelet denoise → scale/clip.
+- **Data -> Features**: raw OHLCV (+ sentiment, Greeks proxies) -> wavelet denoise -> scale/clip.
 - **Split**: walk-forward folds (expanding or rolling).
 - **Train**: PPO per fold with reward shaping (confidence & whipsaw).
 - **Validate**: per fold; keep best checkpoint.
-- **Emit**: merge fold predictions → `live_signals.json` (per symbol).
-- **Execute (Simulated)**: Signals can be consumed by external frameworks (e.g., QuantConnect) for backtesting or paper trading.
+- **Emit**: merge fold predictions -> `live_signals.json` (per symbol).
+- **Execute (Simulated)**: Signals can be consumed by external frameworks (e.g., QuantConnect) for backtesting or no-submit infrastructure testing.
 
 ---
 
-## Key metrics we track
+## Key metrics tracked
 
 - Net Return, CAGR, Max Drawdown, **Sharpe**, **PSR (Sharpe>0)**, Sortino, Information Ratio, Turnover, Trades/Day.
 - Per-trade and daily PnL distributions; regime-aware attribution (optional).
+
+These metrics are retained as research evidence. They should not be treated as proof of trading edge without a modern audit that includes leakage controls, untouched holdout, statistical confidence, stability checks, benchmark-relative review, transaction-cost stress, drawdown/turnover review, and live no-submit observation.
 
 ---
 
@@ -104,5 +112,4 @@ Run the following notebooks:
 
 ### Limitations / Next Step
 
-This project is notebook-centered and intended for research validation.  
-A separate production-ready repository will refactor the workflow into modular Python files with CLI commands, local path handling, and no Google Colab dependencies.
+This project is notebook-centered and intended for legacy research validation. A separate deployment repository handles governed no-submit infrastructure. Any future trading-ready candidate should be retrained and audited under the stricter PPO v2 validation design before promotion.
