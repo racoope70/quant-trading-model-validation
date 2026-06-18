@@ -1,13 +1,13 @@
-# PPO + Random Forest Hybrid — Validation Summary
+# PPO + Random Forest Hybrid - Legacy Research Baseline
 
-This repo hosts a PPO + Random Forest hybrid trading pipeline for walk-forward validation, backtesting, and paper-trading readiness.  
+This repo hosts a PPO + Random Forest hybrid trading pipeline for walk-forward research, backtesting, and baseline comparison.  
 The model combines a PPO policy for position sizing with a supervised Random Forest gate that filters whether a forecast horizon is actionable before allowing trade exposure.
 
-This version is the **RF-gated baseline**. A separate PPO + XGBoost hybrid should be built later using the same data, features, splits, and evaluation process for a clean model comparison.
+This version is the **RF-gated research baseline**. It is preserved for audit and comparison purposes only. Under today's stricter trading-readiness standard, it is not promoted for controlled paper submission, live trading, or deployment conversion. A separate PPO + XGBoost hybrid should only be built after the baseline audit and PPO v2 design are complete.
 
 ---
 
-## What’s new / improvements
+## What is new / improvements
 
 1) **Hybrid PPO + RF Architecture**
    - PPO handles continuous position sizing and directional exposure.
@@ -36,26 +36,26 @@ This version is the **RF-gated baseline**. A separate PPO + XGBoost hybrid shoul
 6) **Artifact & Provenance Tracking**
    - Dataset files, gate model, feature lists, threshold config, validation predictions, and manifest outputs are saved consistently.
 
-7) **Backtest/Paper-Test Readiness**
-   - Designed to support PPO-only vs PPO+RF vs PPO+XGBoost comparison.
-   - Gate pass/block behavior can be reviewed before live paper-trading promotion.
+7) **Baseline Comparison Readiness**
+   - Designed to support historical PPO-only vs PPO+RF vs future PPO+XGBoost comparison.
+   - Gate pass/block behavior can be reviewed as research evidence, but it is not proof of trading edge or paper-submit readiness.
 
 ---
 
 ## Minimal pipeline overview
 
-- **Data → Features**: Alpaca OHLCV → 1-hour context features + 15-minute execution features.
-- **Merge**: backward as-of merge to prevent future context leakage.
+- **Data -> Features**: Alpaca OHLCV -> 1-hour context features + 15-minute execution features.
+- **Merge**: backward as-of merge to reduce future context leakage risk.
 - **Label**: forward-return target and binary gate participation label.
 - **Split**: chronological per-symbol train/validation split.
 - **Train Gate**: Random Forest classifier on validation-safe features.
 - **Validate**: threshold sweep using precision, recall, F1, accuracy, and trade rate.
 - **Export**: save gate model, features, threshold, predictions, and manifest records.
-- **Compare**: evaluate PPO-only, PPO+RF, and later PPO+XGBoost under the same rules.
+- **Compare**: evaluate PPO-only, PPO+RF, and later PPO+XGBoost under the same rules after the baseline audit.
 
 ---
 
-## Key metrics we track
+## Key metrics tracked
 
 - Gate Accuracy, Precision, Recall, F1, Confusion Matrix.
 - Train/Validation positive rate.
@@ -63,7 +63,9 @@ This version is the **RF-gated baseline**. A separate PPO + XGBoost hybrid shoul
 - Selected gate probability threshold.
 - PPO portfolio value, Buy & Hold comparison, Return, Sharpe, Max Drawdown.
 - Trade count, gate pass count, gate block count, gate pass rate.
-- Turnover, exposure, skipped decisions, and execution behavior during paper testing.
+- Turnover, exposure, skipped decisions, and no-submit execution behavior.
+
+These metrics are useful for research review. They do not, by themselves, prove trading edge. Feature importance, gate precision, or threshold behavior should not be used as proof of profitability without benchmark-relative performance, untouched holdout, leakage controls, cost/slippage stress, drawdown and turnover review, stability across adjacent windows, and live no-submit observation.
 
 ---
 
@@ -199,15 +201,15 @@ python src/run_validation.py
 6. Save gate artifacts and manifest records.
 7. Run PPO + RF backtests.
 8. Compare against PPO-only.
-9. Promote only stable candidates to paper testing.
+9. Preserve results as legacy research baseline evidence unless the model passes the stricter modern promotion standard.
 
 ---
 
 ## RF vs XGBoost comparison plan
 
-This repo is the **PPO + Random Forest baseline**.
+This repo is the **PPO + Random Forest research baseline**.
 
-The PPO + XGBoost version should be created separately and compared under the same:
+The PPO + XGBoost version should be created separately only after the baseline audit and PPO v2 design are complete. It should be compared under the same:
 
 - ticker universe
 - data source
@@ -216,16 +218,16 @@ The PPO + XGBoost version should be created separately and compared under the sa
 - train/validation split
 - threshold sweep process
 - backtest rules
-- paper-trading rules
+- no-submit paper-observation rules
 
 The goal is a controlled comparison:
 
 ```text
-PPO-only
+PPO-only legacy baseline
 vs.
-PPO + Random Forest gate
+PPO + Random Forest gate legacy baseline
 vs.
-PPO + XGBoost gate
+future PPO v2 + XGBoost gate candidate
 ```
 
 ---
@@ -234,7 +236,9 @@ PPO + XGBoost gate
 
 ```text
 Model: PPO + Random Forest hybrid
-Stage: Validation baseline
-Purpose: Backtesting, paper testing, and future XGBoost comparison
+Stage: Legacy research baseline
+Purpose: Audit evidence, baseline comparison, and future PPO v2/XGBoost design reference
 Production status: Not production-ready
+Controlled paper-submit status: Not approved
+Hybrid deployment status: Not approved
 ```
