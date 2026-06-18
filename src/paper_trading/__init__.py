@@ -1,1 +1,1 @@
-"""No-order Alpaca paper-trading dry-run utilities for validated PPO artifacts."""
+"""No-order Alpaca paper-trading dry-run utilities for legacy PPO research artifacts."""
