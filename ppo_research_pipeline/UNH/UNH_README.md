@@ -1,9 +1,11 @@
-# PPO Walk-Forward (External Signals) — Summary
+# PPO Walk-Forward (External Signals) - Legacy Baseline Summary
 
-This repo hosts a walk-forward PPO pipeline that produces external trading signals consumed by a QuantConnect (LEAN) client.  
-The model runs per-ticker walk-forward training/evaluation, saves artifacts per fold, and exports a clean signal feed for execution.
+This folder documents a walk-forward PPO pipeline that produced external trading signals for a QuantConnect (LEAN) client.  
+The model ran per-ticker walk-forward training/evaluation, saved artifacts per fold, and exported a clean signal feed for execution testing.
 
-## What’s new / improvements
+**Current interpretation:** The UNH evidence is research-promising and infrastructure-worthy, but it is not sufficient for controlled paper submission, live trading, or hybrid deployment under today's stricter standard. This folder should be treated as legacy PPO research validation evidence, not as proof of a production-ready trading edge.
+
+## What is new / improvements
 
 1) **Execution & Slippage Simulation**
    - Constant and impact-style slippage profiles; fee model hooks.
@@ -17,7 +19,7 @@ The model runs per-ticker walk-forward training/evaluation, saves artifacts per 
 
 4) **Latency & Broker Integration**
    - JSON signal emitter (RAW Gist alias) with `valid_until_utc` freshness guard.
-   - Confidence-weighted targets (mapped to 10–50% caps) with cash buffer normalization.
+   - Confidence-weighted targets (mapped to 10-50% caps) with cash buffer normalization.
 
 5) **Risk Management Module**
    - Per-name caps, portfolio gross cap (~95% exposure), optional trade-cooldowns.
@@ -39,19 +41,21 @@ The model runs per-ticker walk-forward training/evaluation, saves artifacts per 
 
 ## Minimal pipeline overview
 
-- **Data → Features**: raw OHLCV (+ sentiment, Greeks proxies) → wavelet denoise → scale/clip.
+- **Data -> Features**: raw OHLCV (+ sentiment, Greeks proxies) -> wavelet denoise -> scale/clip.
 - **Split**: walk-forward folds (expanding or rolling).
 - **Train**: PPO per fold with reward shaping (confidence & whipsaw).
 - **Validate**: per fold; keep best checkpoint.
-- **Emit**: merge fold predictions → `live_signals.json` (per symbol).
-- **Execute**: QC consumer polls alias URL; maps confidence → holdings; enforces risk caps.
+- **Emit**: merge fold predictions -> `live_signals.json` (per symbol).
+- **Execute**: QC consumer polls alias URL; maps confidence -> holdings; enforces risk caps.
 
 ---
 
-## Key metrics we track
+## Key metrics tracked
 
 - Net Return, CAGR, Max Drawdown, **Sharpe**, **PSR (Sharpe>0)**, Sortino, Information Ratio, Turnover, Trades/Day.
 - Per-trade and daily PnL distributions; regime-aware attribution (optional).
+
+These metrics should be preserved as research evidence. They should not be used alone to claim trading edge or submit readiness without a modern audit including embargo/leakage controls, untouched holdout, benchmark-relative performance, statistical confidence, stability across adjacent windows, transaction-cost and slippage stress, drawdown and turnover review, candidate persistence, and live no-submit observation behavior.
 
 ---
 
@@ -76,3 +80,4 @@ cd quant-trading-model-zoo/ppo-model-2024-09
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+```
