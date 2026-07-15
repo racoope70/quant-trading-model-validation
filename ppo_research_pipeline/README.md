@@ -7,7 +7,7 @@ The model runs per-ticker walk-forward training/evaluation, saves artifacts per 
 
 ## Current interpretation
 
-The PPO pipeline is useful as historical validation evidence and as an infrastructure fixture. It should not be described as a fully validated trading model. The old model-selection process appears to have relied heavily on saved window metrics such as final portfolio value, buy-and-hold comparison, and Sharpe ranking. That evidence is useful, but it is not enough by itself for today's trading-readiness standard.
+The PPO pipeline is useful as historical validation evidence and as an infrastructure fixture. It should not be described as a fully validated trading model. The original model-selection process appears to have relied heavily on saved window metrics such as final portfolio value, buy-and-hold comparison, and Sharpe ranking. That evidence is useful, but it is not enough by itself for today's trading-readiness standard.
 
 Future PPO work should begin with a modern model-quality audit and PPO v2 retraining design before any controlled submit, hybrid deployment, or live-trading claim is made.
 
