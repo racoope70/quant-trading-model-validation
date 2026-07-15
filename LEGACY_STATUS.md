@@ -2,7 +2,7 @@
 
 ## Current classification
 
-This repository preserves legacy PPO research validation evidence. The original PPO work was not useless. It was research-promising and infrastructure-worthy, but it is not production-paper-submit-ready under the current standard.
+This repository preserves legacy PPO research and validation evidence. The original PPO work remains valuable as a research baseline and as a foundation for the current deployment architecture. However, it was developed under an earlier validation standard and should not be treated as production-grade or authorized for paper-trading order submission under the current governance framework.
 
 ```text
 Old validation repo = legacy PPO research validation evidence
