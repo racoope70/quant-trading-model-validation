@@ -5,7 +5,7 @@
 This repository preserves legacy PPO research and validation evidence. The original PPO work remains valuable as a research baseline and as a foundation for the current deployment architecture. However, it was developed under an earlier validation standard and should not be treated as production-grade or authorized for paper-trading order submission under the current governance framework.
 
 ```text
-Old validation repo = legacy PPO research validation evidence
+Original validation repo = legacy PPO research validation evidence
 Current deployment repo = governed no-submit infrastructure and audit pipeline
 Future work = PPO v2 retraining under stricter validation standards
 ```
@@ -31,7 +31,7 @@ buy_hold
 sharpe
 ```
 
-Those fields are useful research evidence, but they are not enough for the current trading-readiness standard. The older process appears to have favored top windows by Sharpe ranking, which is not sufficient by itself for controlled paper submission or deployment.
+Those fields are useful research evidence, but they are not enough for the current trading-readiness standard. The original process appears to have favored top windows by Sharpe ranking, which is not sufficient by itself for controlled paper submission or deployment.
 
 ## Mixed PPO evidence examples
 
@@ -94,6 +94,6 @@ A future PPO v2 candidate should require stronger evidence, including:
 
 ## Guardrails
 
-Do not delete the old work. Do not describe the old model as useless. Do not claim controlled submit readiness. Do not claim PPO + RF or PPO + XGBoost readiness. Do not use feature importance, gate behavior, or threshold sweeps as proof of trading edge.
+Do not delete the original work. Do not describe the legacy model as useless. Do not claim controlled submit readiness. Do not claim PPO + RF or PPO + XGBoost readiness. Do not use feature importance, gate behavior, or threshold sweeps as proof of trading edge.
 
 This repository should be read as legacy PPO research validation evidence and an infrastructure audit fixture.
