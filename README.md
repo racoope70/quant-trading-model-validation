@@ -1,5 +1,11 @@
 # Market ML Signals - Backtested Research Pipeline
 
+![Status](https://img.shields.io/badge/status-legacy%20validation-lightgrey)
+![Python](https://img.shields.io/badge/Python-research-blue?logo=python&logoColor=white)
+![Google Colab](https://img.shields.io/badge/Google%20Colab-original%20environment-F9AB00?logo=googlecolab&logoColor=white)
+![Models](https://img.shields.io/badge/models-PPO%20%2B%20Random%20Forest-blueviolet)
+![Validation](https://img.shields.io/badge/validation-walk--forward-success)
+
 This repository contains walk-forward machine learning trading research pipelines used for model validation, backtesting, and paper trading.
 It represents the structured middle stage between exploratory research and a production-ready implementation.
 
