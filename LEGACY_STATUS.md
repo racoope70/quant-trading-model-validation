@@ -2,15 +2,20 @@
 
 ## Current classification
 
-This repository preserves legacy PPO research and validation evidence. The original PPO work remains valuable as a research baseline and as a foundation for the current deployment architecture. However, it was developed under an earlier validation standard and should not be treated as production-grade or authorized for paper-trading order submission under the current governance framework.
+This repository preserves legacy PPO research and validation evidence. The original PPO work remains valuable as a research baseline and as a historical foundation for later modular implementation and research architecture. However, it was developed under an earlier validation standard and should not be treated as production-grade or as current authorization for paper-trading order submission.
 
 ```text
-Original validation repo = legacy PPO research validation evidence
-Current deployment repo = governed no-submit infrastructure and audit pipeline
-Future work = PPO v2 retraining under stricter validation standards
+Historical validation repository = legacy PPO research validation evidence
+Later implementation repository = historical modular PPO implementation, execution research, and model-quality review
+Current canonical repository = quantitative-trading-research-platform (research platform in development)
+Future work = model development under stricter validation standards
 ```
 
-## Promotion decision
+These roles describe the research lineage and do not imply automatic promotion from historical validation to profitable or production deployment.
+
+## Historical promotion decision
+
+The following dispositions were reached at that stage of the project and are preserved as historical decisions rather than current authorization:
 
 ```text
 Promote to no-submit deployment infrastructure: YES
@@ -89,11 +94,11 @@ A future PPO v2 candidate should require stronger evidence, including:
 - transaction-cost and slippage stress
 - drawdown and turnover review
 - candidate persistence
-- live no-submit observation behavior
+- no-submit observation behavior
 - clear promotion / rejection gates
 
 ## Guardrails
 
-Do not delete the original work. Do not describe the legacy model as useless. Do not claim controlled submit readiness. Do not claim PPO + RF or PPO + XGBoost readiness. Do not use feature importance, gate behavior, or threshold sweeps as proof of trading edge.
+Do not delete the original work. Do not describe the legacy model as useless. Do not claim controlled submit readiness. Do not claim PPO + RF or PPO + XGBoost readiness. Do not use feature importance, gate behavior, threshold sweeps, Sharpe, successful fills, or infrastructure behavior as proof of trading edge.
 
-This repository should be read as legacy PPO research validation evidence and an infrastructure audit fixture.
+This repository should be read as historical PPO research-validation evidence and a historical source of validation and infrastructure-audit evidence, not as the current canonical project or a production system.
