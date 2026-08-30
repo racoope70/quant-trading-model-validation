@@ -36,7 +36,9 @@ buy_hold
 sharpe
 ```
 
-Those fields are useful research evidence, but they are not enough for the current trading-readiness standard. The original process appears to have favored top windows by Sharpe ranking, which is not sufficient by itself for controlled paper submission or deployment.
+Those fields are useful research evidence, but they are not enough for the current trading-readiness standard. The original process appears to have favored top windows by Sharpe ranking, which is not sufficient by itself for controlled paper submission or deployment. The preserved standalone PPO GE and UNH metrics came from rolling historical windows in which PPO was trained and then evaluated across the same `df_window`; those saved window metrics therefore should not be interpreted as independent out-of-sample validation results.
+
+The later PPO + Random Forest research materially strengthened the historical methodology with chronological per-window train/evaluation separation, `OOS_ONLY` evaluation, backward temporal context alignment, explicit future-context/no-lookahead checks, Random Forest participation-gate models, gate thresholds and feature metadata, train/evaluation gate metrics, model-selector outputs, and preserved PPO, RF-gate, VecNormalize, feature, and model-info artifacts. That stronger evidence still did not constitute an untouched final holdout or establish stable trading edge or current trading readiness.
 
 ## Mixed PPO evidence examples
 
@@ -71,7 +73,7 @@ Net Equity Change = -254.67
 Return = -0.2710%
 Estimated wins = 1
 Estimated losses = 3
-Win rate = 25%
+Estimated win rate = 25%
 Estimated profit factor = about 0.31
 ```
 
@@ -86,16 +88,16 @@ Infrastructure proof, not profitability proof.
 
 A future PPO v2 candidate should require stronger evidence, including:
 
-- embargo / leakage controls
-- untouched holdout
+- explicit embargo and stronger leakage controls
+- untouched final holdout
 - statistical confidence
-- stability across adjacent windows
-- benchmark-relative performance
-- transaction-cost and slippage stress
-- drawdown and turnover review
+- formal stability qualification across adjacent windows
+- systematic benchmark-relative qualification
+- transaction-cost and slippage sensitivity stress beyond fixed assumptions
+- formal drawdown and turnover qualification
 - candidate persistence
-- no-submit observation behavior
-- clear promotion / rejection gates
+- preserved no-submit observation evidence
+- clear final promotion / rejection gates
 
 ## Guardrails
 
