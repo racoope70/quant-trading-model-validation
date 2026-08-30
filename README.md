@@ -76,8 +76,6 @@ validation/paper_trading/phase_1_reliability/
 
 The preserved evidence confirms that PPO artifacts loaded correctly, Alpaca Paper credentials connected, model predictions executed, paper orders were submitted and filled, no duplicate-order or stale-bar failures were observed, strict flatten completed successfully, and run summaries/logs were produced.
 
-The preserved run started with account equity of `$93,990.44` and ended at `$93,735.77`, a `-0.2710%` return. That negative trading result is consistent with the correct interpretation of this phase:
-
 **This is an operational reliability pass, not a profitability or trading-edge claim.**
 
 ---
