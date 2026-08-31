@@ -28,7 +28,7 @@ Run baseline model-quality audit first: YES
 
 ## Why the legacy evidence is insufficient
 
-The original PPO training and validation pipeline evaluated PPO against buy-and-hold and recorded portfolio, Sharpe, and drawdown-style metrics. The saved model-info files appear to preserve mainly:
+The original PPO training and validation pipeline evaluated PPO against buy-and-hold and recorded portfolio, Sharpe, and drawdown-style metrics. The saved model-info files primarily contain:
 
 ```text
 final_portfolio
@@ -36,7 +36,7 @@ buy_hold
 sharpe
 ```
 
-Those fields are useful research evidence, but they are not enough for the current trading-readiness standard. The original process appears to have favored top windows by Sharpe ranking, which is not sufficient by itself for controlled paper submission or deployment. The preserved standalone PPO GE and UNH metrics came from rolling historical windows in which PPO was trained and then evaluated across the same `df_window`; those saved window metrics therefore should not be interpreted as independent out-of-sample validation results.
+Those fields are useful research evidence, but they are not enough for the current trading-readiness standard. The original process selected top windows using Sharpe ranking, which is not sufficient by itself for controlled paper submission or deployment. The preserved standalone PPO GE and UNH metrics came from rolling historical windows in which PPO was trained and then evaluated across the same `df_window`; those saved window metrics therefore should not be interpreted as independent out-of-sample validation results.
 
 The later PPO + Random Forest research materially strengthened the historical methodology. It introduced chronological per-window train/evaluation separation, `OOS_ONLY` evaluation, backward temporal context alignment, explicit future-context/no-lookahead checks, and Random Forest participation gating. The repository also preserves gate thresholds, feature metadata, train/evaluation gate metrics, model-selector outputs, and PPO, RF-gate, VecNormalize, feature, and model-info artifacts. Even with those improvements, the evidence did not constitute an untouched final holdout or establish a stable trading edge or current trading readiness.
 
