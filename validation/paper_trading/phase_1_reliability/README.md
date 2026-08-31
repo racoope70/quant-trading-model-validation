@@ -64,22 +64,9 @@ Confirmed:
 
 This validation supports broker-side reliability, not strategy profitability. The run finished negative on account equity, so it should be treated as an operational reliability pass only.
 
-The appropriate next step is to keep this folder as validation evidence, then implement a clean VS Code dry-run module under `src/paper_trading/`. That dry-run should load the PPO artifact set, fetch Alpaca bars, predict target weights, compare target versus actual broker positions, and write logs without submitting orders.
+## Historical sequencing
 
-## Deployment repository handoff
-
-Final paper-trading implementation will continue in the separate VS Code deployment repository rather than inside this validation repository.
-
-This repository is intended to preserve validation evidence, reliability reports, sample logs, run diagnostics, and reproducibility notes. The deployment repository is responsible for the production-style paper-trading system, including broker-loop implementation, local configuration, runtime controls, order-submission logic, and operational monitoring.
-
-The current `v1` naming is appropriate if it represents the first stable deployable paper-trading implementation. Additional versioning is only necessary if the architecture, execution logic, or risk-control framework materially changes.
-
-Recommended repository boundary:
-
-```text
-validation repository = validation evidence, reliability reports, run diagnostics, and reproducibility notes
-deployment repository = executable VS Code paper-trading system, broker loop, runtime controls, and operational monitoring
-```
+Phase 1 was followed by a no-order dry-run implementation under `src/paper_trading/` and later modular execution research in the subsequent `ppo-trading-pipeline` stage. This folder remains evidence of broker-side reliability and does not represent a final live or paper-trading deployment system.
 
 ## Clean repo split
 
@@ -112,4 +99,4 @@ From the repo root:
 python -m src.paper_trading.paper_trade_dry_run
 ```
 
-The dry-run module is intentionally configured as no-order execution. It should be used to verify local artifact loading, Alpaca bar retrieval, PPO prediction, target-weight calculation, and target-vs-actual position logging before any order-submission module is introduced.
+The dry-run module is intentionally configured as no-order execution and preserves the implementation stage that followed the Phase 1 reliability validation.

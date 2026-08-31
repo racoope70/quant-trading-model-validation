@@ -7,9 +7,9 @@ The model runs per-ticker walk-forward training/evaluation, saves artifacts per 
 
 ## Current interpretation
 
-The PPO pipeline is useful as historical validation evidence and as an infrastructure fixture. It should not be described as a fully validated trading model. The original model-selection process appears to have relied heavily on saved window metrics such as final portfolio value, buy-and-hold comparison, and Sharpe ranking. That evidence is useful, but it is not enough by itself for today's trading-readiness standard.
+The PPO pipeline is useful as historical validation evidence and as an infrastructure fixture. It should not be described as a fully validated trading model. The original model-selection process relied on saved window metrics such as final portfolio value, buy-and-hold comparison, and Sharpe ranking. That evidence is useful, but it is not enough by itself for today's trading-readiness standard.
 
-Future PPO work should begin with a modern model-quality audit and PPO v2 retraining design before any controlled submit, hybrid deployment, or live-trading claim is made.
+The retrospective assessment was that a modern model-quality audit and PPO v2 retraining design should precede any controlled submit, hybrid deployment, or live-trading claim.
 
 ## Core Capabilities
 
@@ -67,8 +67,8 @@ These metrics are retained as research evidence. They should not be treated as p
 
 ## Saved artifacts (consistent naming)
 
-All artifacts are grouped by **ticker** and **fold** under `artifacts/`.  
-Use these patterns so everything lines up with the report and orders CSV:
+Preserved standalone PPO model artifacts are stored under `trained_models/`, with ticker and window identifiers in the filenames.  
+The layout below reflects the preserved research structure:
 
 Example artifact layout:
 
@@ -77,7 +77,7 @@ ppo_research_pipeline/
   trained_models/
   GE/
   UNH/
-  ppo_multi_stock_training_pipeline.ipynb
+  ppo_multi_stock_training_pipeline.py
 ```
 
 ## Installation & Usage
@@ -90,8 +90,8 @@ ppo_research_pipeline/
 
 ### Setup
 ```bash
-git clone https://github.com/racoope70/quantitative-trading-system.git
-cd quantitative-trading-system
+git clone https://github.com/racoope70/quant-trading-model-validation.git
+cd quant-trading-model-validation
 
 python3 -m venv .venv
 source .venv/bin/activate
@@ -99,10 +99,10 @@ pip install -r requirements.txt
 ```
 ### Usage (Research Workflow)
 
-Run the following notebooks:
+Use the following research components:
 
 - Training pipeline:
-  - `ppo_research_pipeline/ppo_multi_stock_training_pipeline.ipynb`
+  - `ppo_research_pipeline/ppo_multi_stock_training_pipeline.py`
 
 - Backtesting:
   - `ppo_research_pipeline/UNH/`
@@ -112,4 +112,4 @@ Run the following notebooks:
 
 ### Limitations / Next Step
 
-This project is notebook-centered and intended for legacy research validation. A separate deployment repository handles governed no-submit infrastructure. Any future trading-ready candidate should be retrained and audited under the stricter PPO v2 validation design before promotion.
+This project is notebook-centered and intended for legacy research validation. Later modular execution and no-submit reliability work continued in the subsequent `ppo-trading-pipeline` stage. The retrospective assessment was that any future trading-ready candidate would require retraining and audit under the stricter PPO v2 validation design before promotion.
