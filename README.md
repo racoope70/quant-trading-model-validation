@@ -72,7 +72,7 @@ The first Alpaca Paper reliability phase is documented under:
 validation/paper_trading/phase_1_reliability/
 ```
 
-**Phase 1 Reliability: PASSED**
+**The Phase 1 Alpaca Paper reliability evaluation passed its operational checks.**
 
 The preserved evidence confirms that PPO artifacts loaded correctly, Alpaca Paper credentials connected, model predictions executed, paper orders were submitted and filled, no duplicate-order or stale-bar failures were observed, strict flatten completed successfully, and run summaries/logs were produced.
 
