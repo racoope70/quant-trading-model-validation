@@ -99,8 +99,8 @@ A future PPO v2 candidate should require stronger evidence, including:
 - preserved no-submit observation evidence
 - clear final promotion / rejection gates
 
-## Guardrails
+## Historical interpretation
 
-Do not delete the original work. Do not describe the legacy model as useless. Do not claim controlled submit readiness. Do not claim PPO + RF or PPO + XGBoost readiness. Do not use feature importance, gate behavior, threshold sweeps, Sharpe, successful fills, or infrastructure behavior as proof of trading edge.
+The preserved results, model artifacts, gate behavior, threshold evaluations, Sharpe metrics, broker fills, and infrastructure evidence document meaningful historical research, but none of these elements alone establishes a stable trading edge or trading readiness.
 
-This repository should be read as historical PPO research-validation evidence and a historical source of validation and infrastructure-audit evidence, not as the current canonical project or a production system.
+The repository remains a historical source of PPO and PPO + Random Forest validation and infrastructure evidence. It is not the current canonical research platform or a production trading system.
