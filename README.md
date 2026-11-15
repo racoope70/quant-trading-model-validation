@@ -144,18 +144,18 @@ The repository preserves historical research pipelines, model artifacts, broker-
 
 ```text
 quant-trading-model-validation/
-├── README.md
-├── LEGACY_STATUS.md
-├── requirements.txt
-├── config/
+├── README.md                             # Repository overview
+├── LEGACY_STATUS.md                      # Historical research status
+├── requirements.txt                      # Python dependencies
+├── config/                               # Pipeline configuration
 │   └── paper_trading_six_ticker_manifest.json
-├── src/
+├── src/                                  # Implementation source code
 │   └── paper_trading/
 │       ├── __init__.py
 │       ├── artifact_manifest.py
 │       ├── artifact_loader.py
 │       └── paper_trade_dry_run.py
-├── validation/
+├── validation/                           # Validation and reliability evidence
 │   └── paper_trading/
 │       └── phase_1_reliability/
 │           ├── README.md
@@ -163,11 +163,11 @@ quant-trading-model-validation/
 │           ├── run_summary_sample.csv
 │           ├── symbol_order_fill_summary.csv
 │           └── artifact_symbol_summary.csv
-├── ppo_research_pipeline/
+├── ppo_research_pipeline/                # PPO research artifacts
 │   ├── GE/
 │   ├── UNH/
 │   └── trained_models/
-└── ppo_rf_research_pipeline/
+└── ppo_rf_research_pipeline/             # Combined PPO/RF research
     ├── Model Selector/
     ├── PPO RF Models Master/
     └── PPO RF Models QC Top/
